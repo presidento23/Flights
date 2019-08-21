@@ -8,7 +8,7 @@
     const renderer = new THREE.WebGLRenderer({canvas});
 
     const fov = 60;
-    const aspect = 2;  // the canvas default
+    const aspect = 2;  // te canvas default
     const near = 0.1;
     const far = 10;
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
@@ -48,6 +48,14 @@
     async function loadJSON(url) {
       const req = await fetch(url);
       return req.json();
+    }
+
+    async function AirplanesAPI(latmin = 45.8389, longmin = 5.9962, latmax= 47.8229, longmax= 10.5226){
+      const api = `https://opensky-network.org/api/states/all?lamin=${latmin}&lomin=${longmin}&lamax=${latmax}&lomax=${longmax}`
+      fetch(api)
+        .then(Response =>{
+          return console.log(Response.json)
+        })
     }
 
     let numCountriesSelected = 0;
